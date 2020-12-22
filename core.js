@@ -1,7 +1,7 @@
 // Creating the client
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const token = 'NzkxMDAyNTk4Nzg5MzQ5Mzg2.X-I0kw.1gycj5YwhCPvNZElsefWA1wJ9DA';
+const token = 'NzkxMDAyNTk4Nzg5MzQ5Mzg2.X-I0kw.yCS0bW0HhIwZ1LmntbfQTUqmET0';
 
 // Setting up command handling
 const fs = require('fs');
