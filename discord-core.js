@@ -39,12 +39,6 @@ client.on('message', message => {
   } else if (command === 'twitter') {
     client.commands.get('twitter').execute(message, args);
     console.log(message.content + ' ran successfully!');
-  } else if (command === 'mod') {
-    client.commands.get('mod').execute(message, args);
-    console.log(message.content + ' ran successfully!');
-  } else if (command === 'plsgivemod') {
-    client.commands.get('plsgivemod').execute(message, args);
-    console.log(message.content + ' ran successfully!');
   } else if (command === 'commands') {
     client.commands.get('commands').execute(message, args, client.commands);
     console.log(message.content + ' ran successfully!');
