@@ -1,10 +1,10 @@
 // Creating the client
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const token = 'NzkxMDAyNTk4Nzg5MzQ5Mzg2.X-I0kw.Kpo0q_tmL3LpTUml9qGwXlywikI';
+const fs = require('fs');
+const token = fs.readFileSync('./token.txt').toString();
 
 // Setting up command handling
-const fs = require('fs');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => 
   file.endsWith('.js')

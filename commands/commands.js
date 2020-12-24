@@ -24,6 +24,7 @@ module.exports = {
     messageEmbed.addFields(fieldDataArray);
     messageEmbed.setTitle('Commands');
     messageEmbed.setDescription('A list of all server commands');
+    messageEmbed.setColor('#02A9FF');
 
     message.channel.send(messageEmbed);
   }
