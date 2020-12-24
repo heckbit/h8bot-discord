@@ -23,6 +23,7 @@ module.exports = {
     const messageEmbed = new Discord.MessageEmbed();
     messageEmbed.addFields(fieldDataArray);
     messageEmbed.setTitle('Commands');
+    messageEmbed.setDescription('A list of all server commands');
 
     message.channel.send(messageEmbed);
   }
