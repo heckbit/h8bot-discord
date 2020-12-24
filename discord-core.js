@@ -33,12 +33,24 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if(command === 'ping') {
-    client.commands.get('ping').execute(message, args);
-  } else if (command === 'youtube') {
+  if (command === 'youtube') {
     client.commands.get('youtube').execute(message, args);
-  }else if (command === 'twitter') {
+    console.log(message.content + ' ran successfully!');
+  } else if (command === 'twitter') {
     client.commands.get('twitter').execute(message, args);
+    console.log(message.content + ' ran successfully!');
+  } else if (command === 'mod') {
+    client.commands.get('mod').execute(message, args);
+    console.log(message.content + ' ran successfully!');
+  } else if (command === 'plsgivemod') {
+    client.commands.get('plsgivemod').execute(message, args);
+    console.log(message.content + ' ran successfully!');
+  } else if (command === 'commands') {
+    client.commands.get('commands').execute(message, args, client.commands);
+    console.log(message.content + ' ran successfully!');
+  } else {
+    message.channel.send('Invalid command detected OOF');
+    console.log('Invalid command: \"' + message.content + '\"');
   }
 });
 

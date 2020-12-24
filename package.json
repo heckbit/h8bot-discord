@@ -2,7 +2,7 @@
   "name": "h8bot-discord",
   "version": "1.0.0",
   "description": "Just antoher generic discord bot, except it's mine.",
-  "main": "core.js",
+  "main": "discord-core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
