@@ -1,6 +1,7 @@
 module.exports = {
   name: "gamble",
-  description: "Lets you gamble some coiny boys",
+  description:
+    "Lets you gamble some coins.\nType !gamble <number of coins>\n**OR**\n!gamble all",
   execute(message, args) {
     const fs = require("fs");
     const Discord = require("discord.js");
@@ -35,7 +36,13 @@ module.exports = {
     if (userExists) {
       // Logic for gambling
       var gambler = coinsData[userIndex];
-      var amount = parseInt(args);
+      var amount = 0;
+
+      if (args[0] === "all") {
+        amount = gambler.coins;
+      } else {
+        amount = parseInt(args);
+      }
 
       // Check if amount is a real number
       if (!isNaN(amount)) {
@@ -77,12 +84,23 @@ module.exports = {
           if (profit < 0) {
             gambleEmbed.setTitle("You lost!");
             gambleEmbed.setDescription(
-              "The house always wins. Proft: " + profit
+              "The house always wins. Proft: " +
+                profit +
+                "\nCoins: " +
+                gambler.coins
+            );
+          } else if (profit === 0) {
+            gambleEmbed.setTitle("Well, you didn't lose... :woman_shrugging:");
+            gambleEmbed.setDescription(
+              "Proft: " + profit + "\nCoins: " + gambler.coins
             );
           } else {
             gambleEmbed.setTitle("You won!");
             gambleEmbed.setDescription(
-              "Looks like you beat the house this time. Proft: " + profit
+              "Looks like you beat the house this time. Proft: " +
+                profit +
+                "\nCoins: " +
+                gambler.coins
             );
           }
 
@@ -107,6 +125,8 @@ module.exports = {
         id: message.author.id,
         name: message.author.username,
         coins: 500,
+        dailyDate: 0,
+        weeklyDate: 0,
       };
 
       coinsData.push(newUser);
@@ -118,7 +138,7 @@ module.exports = {
       newUserEmbed.setDescription(
         "Who needs parental permission!\nWe snuck " +
           newUser.coins +
-          " coins into your account.\nTo get started, type !gamble <number of coins> to gamble them away!"
+          " coins into your account.\nTo get started, type !gamble <number of coins> or 'all' to gamble them away!"
       );
       newUserEmbed.setColor("#FFD700");
 
