@@ -1,10 +1,9 @@
 module.exports = {
   name: "coins",
   description:
-    "'!coins' to show your coins\n'!coins daily' to get your daily reward or\n'!coins weekly' to get your weekly reward.",
-  execute(message, args) {
+    "Shows your current number of coins.\n- !coins daily to get your daily reward.\n- !coins weekly to get your weekly reward.",
+  execute(client, message, args, Discord) {
     const fs = require("fs");
-    const Discord = require("discord.js");
     const path = "././coins.json";
     var data;
     var coinsData = [];

@@ -1,0 +1,10 @@
+BETS                      PAYOUTS
+- Odds                    1 to 1
+- Evens                   1 to 1
+- Reds                    1 to 1
+- Blacks                  1 to 1
+- first (first dozen)     2 to 1
+- second (second dozen)   2 to 1
+- third (third dozen)     2 to 1
+- Single numbers         35 to 1
+- 0 and 00               35 to 1

@@ -1,7 +1,9 @@
 module.exports = {
-  name: 'youtube',
+  name: "youtube",
   description: "Displays my youtube channel link",
-  execute(message, args) {
-    message.channel.send('https://www.youtube.com/channel/UCjaIya_43PMm0mfBH-YRfBA');
-  }
-}
+  execute(client, message, args, Discord) {
+    message.channel.send(
+      "https://www.youtube.com/channel/UCjaIya_43PMm0mfBH-YRfBA"
+    );
+  },
+};

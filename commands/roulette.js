@@ -1,8 +1,7 @@
 module.exports = {
-  name: "gamble",
-  aliases: ["g", "bet"],
+  name: "roulette",
   description:
-    "Lets you gamble some coins.\n- !gamble <number of coins>\n- !gamble all\n- !gamble half",
+    "Gamble your coins away in a game of roulette!\n- !roulette to see all of the bets and odds\n- !roulette <bet name> <bet value>",
   execute(client, message, args, Discord) {
     const fs = require("fs");
     const path = "././coins.json";
@@ -20,7 +19,6 @@ module.exports = {
       fs.writeFileSync(path, JSON.stringify(coinsData, null, 2));
     }
 
-    // Determines if user is in the coin database
     var userExists = false;
     var userIndex;
 
@@ -50,52 +48,24 @@ module.exports = {
       if (!isNaN(amount)) {
         if (amount > gambler.coins) {
           var invalidGambleEmbed = new Discord.MessageEmbed();
-          invalidGambleEmbed.setTitle("You can't gamble coins you don't have!");
+          invalidGambleEmbed.setTitle("You can't bet coins you don't have!");
           invalidGambleEmbed.setDescription(
             "You currently have " +
               gambler.coins +
-              " coins in your account.  Try gambling that amount or less instead."
+              " coins in your account.  Try betting that amount or less instead."
           );
           invalidGambleEmbed.setColor("#FFD700");
           message.channel.send(invalidGambleEmbed);
         } else {
-          gambler.coins -= amount;
-          var multiplier = gambleNumber(10);
-          var val;
-
-          if (multiplier < 2) {
-            val = 0;
-          } else if (multiplier < 3) {
-            val = amount * 0.25;
-          } else if (multiplier < 4) {
-            val = amount * 0.5;
-          } else if (multiplier < 6) {
-            val = amount;
-          } else if (multiplier < 8) {
-            val = amount * 1.5;
-          } else if (multiplier < 9) {
-            val = amount * 2;
-          } else {
-            val = amount * 2.5;
-          }
-
-          val = Math.round(val);
-          gambler.coins += val;
-          var profit = val - amount;
-
+          // ROULETTE LOGIC
           var gambleEmbed = new Discord.MessageEmbed();
-          if (profit < 0) {
+          if (win) {
             gambleEmbed.setTitle("You lost!");
             gambleEmbed.setDescription(
               "The house always wins. Proft: " +
                 profit +
                 "\nCoins: " +
                 gambler.coins
-            );
-          } else if (profit === 0) {
-            gambleEmbed.setTitle("Well, you didn't lose... :woman_shrugging:");
-            gambleEmbed.setDescription(
-              "Proft: " + profit + "\nCoins: " + gambler.coins
             );
           } else {
             gambleEmbed.setTitle("You won!");
@@ -149,9 +119,5 @@ module.exports = {
     }
 
     fs.writeFileSync(path, JSON.stringify(coinsData, null, 2));
-
-    function gambleNumber(max) {
-      return Math.floor(Math.random() * Math.floor(max));
-    }
   },
 };
