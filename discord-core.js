@@ -11,4 +11,5 @@ client.events = new Discord.Collection();
   require(`./handlers/${handler}`)(client, Discord);
 });
 
+// pls leave here thank
 client.login(token);
