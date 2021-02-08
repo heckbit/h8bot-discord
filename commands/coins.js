@@ -1,5 +1,6 @@
 module.exports = {
   name: "coins",
+  aliases: ['c', 'coin'],
   description:
     "Shows your current number of coins.\n- !coins daily to get your daily reward.\n- !coins weekly to get your weekly reward.",
   execute(client, message, args, Discord) {
@@ -11,8 +12,6 @@ module.exports = {
     const weeklyRedemption = 1000;
     const oneDay = 86400000;
     const oneWeek = 604800000;
-
-    console.log(args[0]);
 
     // Checks if coins.json exists, if it does the data is pulled
     // If coins.json does not exist, writes a new json formatted file
@@ -31,7 +30,7 @@ module.exports = {
       if (coinsData[i].id === message.author.id) {
         userExists = true;
         userIndex = i;
-        console.log("User found");
+        console.log(`${message.author.username} has a coins account!`);
       }
     }
 
@@ -47,6 +46,7 @@ module.exports = {
           coinsData[userIndex] = gambler;
 
           dailyEmbed.setTitle("Here's your daily reward!");
+          dailyEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
           dailyEmbed.setDescription(
             "You redeemed your daily 100 coins.\nCoins: " + gambler.coins
           );
@@ -65,6 +65,7 @@ module.exports = {
           var nextRedeem = hours + ":" + minutes + ":" + seconds;
 
           dailyEmbed.setTitle("You already redeemed your daily reward!");
+          dailyEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
           dailyEmbed.setDescription("Next daily reward: " + nextRedeem);
           dailyEmbed.setColor("#FFD700");
           message.channel.send(dailyEmbed);
@@ -79,6 +80,7 @@ module.exports = {
           coinsData[userIndex] = gambler;
 
           weeklyEmbed.setTitle("Here's your weekly reward!");
+          weeklyEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
           weeklyEmbed.setDescription(
             "You redeemed your weekly 1000 coins.\nCoins: " + gambler.coins
           );
@@ -98,6 +100,7 @@ module.exports = {
 
           var nextRedeem = days + ":" + hours + ":" + minutes + ":" + seconds;
           weeklyEmbed.setTitle("You already redeemed your weekly reward!");
+          weeklyEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
           weeklyEmbed.setDescription("Next weekly reward: " + nextRedeem);
           weeklyEmbed.setColor("#FFD700");
           message.channel.send(weeklyEmbed);
@@ -105,6 +108,7 @@ module.exports = {
       } else {
         var coinsEmbed = new Discord.MessageEmbed();
         coinsEmbed.setTitle(gambler.name + "'s Account");
+        coinsEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
         coinsEmbed.setDescription(
           "Name: " + gambler.name + "\nCoins: " + gambler.coins
         );
@@ -115,6 +119,7 @@ module.exports = {
     } else {
       var notFoundEmbed = new Discord.MessageEmbed();
       notFoundEmbed.setTitle("Hey, " + message.author.username + "!");
+      notFoundEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
       notFoundEmbed.setDescription(
         "We noticed you don't have an account yet.\nIf you would like to make one, type !gamble"
       );

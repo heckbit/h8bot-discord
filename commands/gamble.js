@@ -1,6 +1,6 @@
 module.exports = {
   name: "gamble",
-  aliases: ["g", "bet"],
+  aliases: ["g", "bet", 'gmable'],
   description:
     "Lets you gamble some coins.\n- !gamble <number of coins>\n- !gamble all\n- !gamble half",
   execute(client, message, args, Discord) {
@@ -57,6 +57,7 @@ module.exports = {
               " coins in your account.  Try gambling that amount or less instead."
           );
           invalidGambleEmbed.setColor("#FFD700");
+          invalidGambleEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
           message.channel.send(invalidGambleEmbed);
         } else {
           gambler.coins -= amount;
@@ -108,6 +109,7 @@ module.exports = {
           }
 
           gambleEmbed.setColor("#FFD700");
+          gambleEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
 
           coinsData[userIndex] = gambler;
 
@@ -120,6 +122,7 @@ module.exports = {
           "Please try gambling a valid number instead (like 100 or 100.5)!"
         );
         invalidGambleEmbed.setColor("#FFD700");
+        invalidGambleEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
         message.channel.send(invalidGambleEmbed);
       }
     } else {
@@ -144,7 +147,7 @@ module.exports = {
           " coins into your account.\nTo get started, type !gamble <number of coins> or 'all' to gamble them away!"
       );
       newUserEmbed.setColor("#FFD700");
-
+      newUserEmbed.setThumbnail('https://img.pngio.com/pixel-coin-png-png-collections-at-sccprecat-pixel-coin-png-1800_1900.png');
       message.channel.send(newUserEmbed);
     }
 
