@@ -1,6 +1,8 @@
 // Creating the client
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({
+  ws: { intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_PRESENCES"] },
+});
 const fs = require("fs");
 const token = fs.readFileSync("./token.txt").toString();
 
